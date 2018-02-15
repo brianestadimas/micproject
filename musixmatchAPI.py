@@ -2,6 +2,7 @@ import requests
 import urllib3
 from bs4 import BeautifulSoup
 
+
 def getAPIkey():
     return 'c29c3abf374df843346ed1bccb20f2ec'
 
@@ -93,6 +94,7 @@ def getTracksWithTrackArtist(track,artist):
 ### Menggunakan API BARU ####
 
 def getLyricsByTrackArtist(artist,track):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track+ '.html'
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
