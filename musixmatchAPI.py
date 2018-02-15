@@ -1,5 +1,5 @@
 import requests
-# import urllib3
+import urllib3
 from bs4 import BeautifulSoup
 
 def getAPIkey():
@@ -94,11 +94,9 @@ def getTracksWithTrackArtist(track,artist):
 
 def getLyricsByTrackArtist(artist,track):
     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track+ '.html'
-    # http = urllib3.PoolManager()
-    # response = request.get('GET', URL)
-    # soup = BeautifulSoup(response.data)
-    response = requests.get(URL)
-    soup = BeautifulSoup(response.content)
+    http = urllib3.PoolManager()
+    response = http.request('GET', URL)
+    soup = BeautifulSoup(response.data)
     elem = soup.find_all('div')
     return elem[21].text
 
