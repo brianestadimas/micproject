@@ -95,7 +95,7 @@ def getTracksWithTrackArtist(track,artist):
 
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track + #'.html'
+    URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track 
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data)
