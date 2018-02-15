@@ -96,9 +96,9 @@ def getLyricsByTrackArtist(artist,track):
     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track+ '.html'
     # http = urllib3.PoolManager()
     # response = request.get('GET', URL)
-    #
+    # soup = BeautifulSoup(response.data)
     response = requests.get(URL)
-    soup = BeautifulSoup(response.data)
+    soup = BeautifulSoup(response.content)
     elem = soup.find_all('div')
     return elem[21].text
 
