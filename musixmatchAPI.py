@@ -103,7 +103,7 @@ def getLyricsByTrackArtist(artist,track):
         elem = soup.find_all('div')
         return elem[21].text
     except requests.packages.urllib3.exceptions.MaxRetryError as e:
-        print repr(e)
+        return "tidak ada"
 
 
 
