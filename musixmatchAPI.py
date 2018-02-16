@@ -97,10 +97,14 @@ def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track 
     http = urllib3.PoolManager()
-    response = http.request('GET', URL)
-    soup = BeautifulSoup(response.data)
-    elem = soup.find_all('div')
-    return elem[21].text
+    try :
+        response = http.request('GET', URL)
+        soup = BeautifulSoup(response.data)
+        elem = soup.find_all('div')
+        return elem[21].text
+    except requests.packages.urllib3.exceptions.MaxRetryError as e:
+        print repr(e)
+
 
 
 #yang baru
