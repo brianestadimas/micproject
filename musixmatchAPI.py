@@ -1,6 +1,7 @@
 import requests
 import urllib3
 from bs4 import BeautifulSoup
+from time import sleep
 
 
 def getAPIkey():
@@ -99,6 +100,7 @@ def getLyricsByTrackArtist(artist,track):
     http = urllib3.PoolManager()
     try :
         response = http.request('GET', URL)
+        sleep(3)
         soup = BeautifulSoup(response.data)
         elem = soup.find_all('div')
         return elem[21].text
