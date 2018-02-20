@@ -93,31 +93,37 @@ def getTracksWithTrackArtist(track,artist):
 
 ### Menggunakan API BARU ####
 
+# def getLyricsByTrackArtist(artist,track):
+#     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+#     track_split = track.replace(" ", "-")
+#     str_builder = "_ "
+
+#     URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
+#     # http = urllib3.PoolManager()
+#     response = requests.get(URL)
+
+#     soup = BeautifulSoup(response.content, "html.parser")
+
+#     for elem in soup.find_all({"class":"lirik_line"}) :
+#         str_builder = str_builder + elem
+
+#     return str_builder
+
+
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
     str_builder = "_ "
 
     URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
-    # http = urllib3.PoolManager()
-    response = requests.get(URL)
-
-    soup = BeautifulSoup(response.data, "html.parser")
+    http = urllib3.PoolManager()
+    response = http.request('GET', URL)
+    soup = BeautifulSoup(response.data,'lxml')
 
     for elem in soup.find_all({"class":"lirik_line"}) :
         str_builder = str_builder + elem
 
     return str_builder
-
-
-# def getLyricsByTrackArtist(artist,track):
-#     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-#     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track + '.html'
-#     http = urllib3.PoolManager()
-#     response = http.request('GET', URL)
-#     soup = BeautifulSoup(response.data,'lxml')
-#     elem = soup.find_all('div')
-#     return elem[21].text
 
 
 
