@@ -128,7 +128,7 @@ def getLyricsByTrackArtist(artist,track):
     for elem in soup.find_all(attrs={"class": "lirik_line"}):
         if "<b>" in elem.text :
             break
-        else if "<span style" in elem.text :
+        elif "<span style" in elem.text :
             break
         else :
             str_builder = str_builder + elem.text
