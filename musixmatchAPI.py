@@ -99,10 +99,10 @@ def getLyricsByTrackArtist(artist,track):
     str_builder = " "
 
     URL = 'https://www.lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
-    http = urllib3.PoolManager()
-    response = http.request('GET', URL)
+    # http = urllib3.PoolManager()
+    response = requests.get(URL)
 
-    soup = BeautifulSoup(response.data,'lxml')
+    soup = BeautifulSoup(response.content,'lxml')
 
     elem = soup.find_all(".lirik_line")
     return elem.text
