@@ -115,7 +115,7 @@ def getLyricsByTrackArtist(artist,track):
     track_split = track.replace(" ", "-")
     str_builder = "_ "
 
-    URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
+    URL = 'https://lirik.kapanlagi.com/artis/' + artist + '/' + track_split
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
