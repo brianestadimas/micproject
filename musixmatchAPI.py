@@ -122,6 +122,7 @@ def getLyricsByTrackArtist(artist,track):
 
     print(response.data)
     print(soup)
+    print(soup.find_all(".lirik_line"))
 
     for elem in soup.find_all(".lirik_line") :
         str_builder = str_builder + elem
