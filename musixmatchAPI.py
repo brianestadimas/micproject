@@ -104,7 +104,7 @@ def getLyricsByTrackArtist(artist,track):
 
     soup = BeautifulSoup(response.data,'lxml')
 
-    elem = soup.find_all(class="lirik_line")
+    elem = soup.find_all(".lirik_line")
     return elem.text
 
 
