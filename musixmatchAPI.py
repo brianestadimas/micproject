@@ -96,7 +96,7 @@ def getTracksWithTrackArtist(track,artist):
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
-    str_builder = " "
+    str_builder = "_ "
 
     URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
     # http = urllib3.PoolManager()
