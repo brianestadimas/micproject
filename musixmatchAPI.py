@@ -95,12 +95,27 @@ def getTracksWithTrackArtist(track,artist):
 
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track + '.html'
+    track_split = track.replace(" ", "-")
+    str_builder = " "
+
+    URL = 'https://www.lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
+
     soup = BeautifulSoup(response.data,'lxml')
-    elem = soup.find_all('div')
-    return elem[21].text
+
+    elem = soup.find_all(class="lirik_line")
+    return elem.text
+
+
+# def getLyricsByTrackArtist(artist,track):
+#     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+#     URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track + '.html'
+#     http = urllib3.PoolManager()
+#     response = http.request('GET', URL)
+#     soup = BeautifulSoup(response.data,'lxml')
+#     elem = soup.find_all('div')
+#     return elem[21].text
 
 
 
