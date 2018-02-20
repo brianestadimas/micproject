@@ -1,7 +1,6 @@
 import requests
 import urllib3
 from bs4 import BeautifulSoup
-from time import sleep
 
 
 def getAPIkey():
@@ -96,16 +95,12 @@ def getTracksWithTrackArtist(track,artist):
 
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track 
+    URL = 'https://www.azlyrics.com/lyrics/' + artist + '/' + track + '.html'
     http = urllib3.PoolManager()
-    try :
-        response = http.request('GET', URL)
-        sleep(3)
-        soup = BeautifulSoup(response.data)
-        elem = soup.find_all('div')
-        return elem[21].text
-    except requests.packages.urllib3.exceptions.MaxRetryError as e:
-        return 'terjadi kesalahan, silahkan coba lagi'
+    response = http.request('GET', URL)
+    soup = BeautifulSoup(response.data)
+    elem = soup.find_all('div')
+    return elem[21].text
 
 
 
