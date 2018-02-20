@@ -120,6 +120,9 @@ def getLyricsByTrackArtist(artist,track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
 
+    print(response.data)
+    print(soup)
+
     for elem in soup.find_all({"class":"lirik_line"}) :
         str_builder = str_builder + elem
 
