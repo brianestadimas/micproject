@@ -133,7 +133,7 @@ def getLyricsByTrackArtist(artist,track):
         elif elem.find_all("style") :
             break
         else :
-            str_builder = str_builder + elem.text
+            str_builder = str_builder + elem.text + "/n"
 
 
     return str_builder
