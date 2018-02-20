@@ -107,7 +107,7 @@ def getLyricsByTrackArtist(artist,track):
     for elem in soup.find_all({"class":"lirik_line"}) :
         str_builder = str_builder + elem
 
-    return elem
+    return str_builder
 
 
 # def getLyricsByTrackArtist(artist,track):
