@@ -113,7 +113,7 @@ def getTracksWithTrackArtist(track,artist):
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
-    str_builder = "_ "
+    str_builder = ""
 
     URL = 'https://lirik.kapanlagi.com/artis/' + artist + '/' + track_split
     http = urllib3.PoolManager()
@@ -126,7 +126,13 @@ def getLyricsByTrackArtist(artist,track):
     print(soup.find_all(attrs={"class": "lirik_line"}))
 
     for elem in soup.find_all(attrs={"class": "lirik_line"}):
-        str_builder = str_builder + elem.text
+        if "<b>" in elem.text :
+            break
+        else if "<span style" in elem.text :
+            break
+        else :
+            str_builder = str_builder + elem.text
+
 
     return str_builder
 
