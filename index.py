@@ -85,14 +85,14 @@ def handle_message(event):
 
 	############## FORMAT UDAH DIRAPIHIN DIMAS #################	
 
-	elif (event.message.text[0] == '/lirik'):
+	elif ('/lirik' in event.message.text):
 		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	###
 	#nurul----
-	elif (event.message.text[0] == '/lagu'):
+	elif ('/lagu' in event.message.text):
 		if (len(event.message.text)<1):
 			reply_message = TextSendMessage(text='Ketik /lagu-(judul), contoh : /lagu-mantan terindah')
 		else :
@@ -112,13 +112,13 @@ def handle_message(event):
 		)
 	)
 
-	elif (event.message.text[0] == '/artis'):
+	elif ('/artis' in event.message.text):
 		if (len(event.message.text)<2):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	
-	elif (event.message.text[0] == '/sublirik'):
+	elif ('/sublirik' in event.message.text):
 		if (len(event.message.text)<2):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
