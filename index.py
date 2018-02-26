@@ -90,7 +90,7 @@ def handle_message(event):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
-	
+	###
 	#nurul----
 	elif (event.message.text[0] == '/lagu'):
 		if (len(event.message.text)<1):
