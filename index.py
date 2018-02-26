@@ -93,7 +93,7 @@ def handle_message(event):
 	###
 	#nurul----
 	elif ('/lagu' in event.message.text):
-		if (len(event.message.text)<1):
+		if (len(event.message.text.split("-"))<1):
 			reply_message = TextSendMessage(text='Ketik /lagu-(judul), contoh : /lagu-mantan terindah')
 		else :
 			reply_message = TemplateSendMessage(
@@ -113,13 +113,13 @@ def handle_message(event):
 	)
 
 	elif ('/artis' in event.message.text):
-		if (len(event.message.text)<2):
+		if (len(event.message.text).split("-")<1):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	
 	elif ('/sublirik' in event.message.text):
-		if (len(event.message.text)<2):
+		if (len(event.message.text).split("-")<1):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
@@ -134,4 +134,3 @@ def handle_message(event):
 
 if __name__ == "__main__":
 	app.run()
-
