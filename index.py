@@ -86,7 +86,7 @@ def handle_message(event):
 	############## FORMAT UDAH DIRAPIHIN DIMAS #################	
 
 	elif (event.message.text[0] == '/lirik'):
-		if (len(event.message.text)<2):
+		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
