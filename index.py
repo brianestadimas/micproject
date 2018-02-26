@@ -86,40 +86,40 @@ def handle_message(event):
 	############## FORMAT UDAH DIRAPIHIN DIMAS #################	
 
 	elif ('/lirik' in event.message.text):
-		if (len(event.message.text.split("-"))<2):
+		if (len(event.message.text.split("-"))<3):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	###
 	#nurul----
 	elif ('/lagu' in event.message.text):
-		if (len(event.message.text.split("-"))<1):
+		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /lagu-(judul), contoh : /lagu-mantan terindah')
-		else :
-			reply_message = TemplateSendMessage(
-			alt_text='Pilih judul dengan artis yang sesuai',
-			template=ImageCarouselTemplate(
-			columns=[
-				(ImageCarouselColumn(
-					image_url='https://via.placeholder.com/800x800', action=MessageTemplateAction(
-						label= result[i].get("track").get("track_name") + ' - ' + result[i].get("track").get("artist_name"),
-						text= '1'+ result[i].get("track").get("track_name") + '-' + result[i].get("track").get("artist_name"),
+		# else :
+	# 		reply_message = TemplateSendMessage(
+	# 		alt_text='Pilih judul dengan artis yang sesuai',
+	# 		template=ImageCarouselTemplate(
+	# 		columns=[
+	# 			(ImageCarouselColumn(
+	# 				image_url='https://via.placeholder.com/800x800', action=MessageTemplateAction(
+	# 					label= result[i].get("track").get("track_name") + ' - ' + result[i].get("track").get("artist_name"),
+	# 					text= '1'+ result[i].get("track").get("track_name") + '-' + result[i].get("track").get("artist_name"),
 
-					)
-				))
-				#for i in range(10):
-			]
-		)
-	)
+	# 				)
+	# 			))
+	# 			#for i in range(10):
+	# 		]
+	# 	)
+	# )
 
 	elif ('/artis' in event.message.text):
-		if (len(event.message.text).split("-")<1):
+		if (len(event.message.text).split("-")<2):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	
 	elif ('/sublirik' in event.message.text):
-		if (len(event.message.text).split("-")<1):
+		if (len(event.message.text).split("-")<2):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
