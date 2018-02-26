@@ -52,7 +52,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	if (event.message.text == '/help'):
+	if ('/help' in event.message.text):
 		reply_message = TemplateSendMessage(
 			alt_text='Message not supported',
 			template=ButtonsTemplate(
