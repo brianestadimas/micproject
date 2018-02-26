@@ -74,6 +74,7 @@ def getTracksWithArtist(artist):
     data = r.json()
     return data
 
+
 def getTracksWithTrackArtist(track,artist):
     URL = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get' 
     PARAMS = {
@@ -113,9 +114,10 @@ def getTracksWithTrackArtist(track,artist):
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
+    artist_split = artist.replace(" ", "-")
     str_builder = ""
 
-    URL = 'https://lirik.kapanlagi.com/artis/' + artist + '/' + track_split
+    URL = 'https://lirik.kapanlagi.com/artis/' + artist_split + '/' + track_split
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
