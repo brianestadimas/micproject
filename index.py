@@ -57,7 +57,7 @@ def handle_message(event):
 			alt_text='Message not supported',
 			template=ButtonsTemplate(
 				title='Helper',
-				text='',
+				text='Please select action',
 				actions=[
 					MessageTemplateAction(
 						label='Cari lirik lagu',
@@ -89,7 +89,7 @@ def handle_message(event):
 		if (len(event.message.text)<2):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
-		reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
+			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	
 	#nurul----
 	elif (event.message.text[0] == '/lagu'):
@@ -116,13 +116,13 @@ def handle_message(event):
 		if (len(event.message.text)<2):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
-		reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
+			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 	
 	elif (event.message.text[0] == '/sublirik'):
 		if (len(event.message.text)<2):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
-		reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
+			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
 
 	else:
 		reply_message = TextSendMessage(text='Ketik /help untuk bantuan')
