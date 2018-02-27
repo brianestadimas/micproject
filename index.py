@@ -92,7 +92,8 @@ def handle_message(event):
 			reply_message = TextSendMessage(text='Ketik /lirik-(judul)-(artis), contoh : /lirik-raisa-mantan terindah')
 		else :
 			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
-	
+			
+
 	elif ('/lagu' in event.message.text):
 		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /lagu-(judul), contoh : /lagu-mantan terindah')
@@ -108,7 +109,7 @@ def handle_message(event):
                 			actions=[
                     			MessageTemplateAction(
 	                        		label="Pilih Ini",
-    	                    		text="/lirik-"+result[i].get("track").get("artist_name")+"-"+result[i].get("track").get("track_name")
+    	                    		text=lirik_api.getLyricsByTrackArtist(result[i].get("track").get("artist_name"),result[i].get("track").get("track_name"))
         	            		)
             	    		]
             			)
