@@ -113,31 +113,34 @@ def getTracksWithTrackArtist(track,artist):
 def getLyricsByTrackArtist(artist,track):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
+    artist_split = artist.replace(" ","-")
     str_builder = ""
 
-    URL = 'https://lirik.kapanlagi.com/artis/' + artist + '/' + track_split
+    URL = 'https://genius.com/' + artist_split + '-' + track_split+'-lyrics'
     http = urllib3.PoolManager()
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
 
-
-    print(soup.find_all(".lirik_line"))
     print("coba")
-    print(soup.find_all(attrs={"class": "lirik_line"}))
+    print(soup.find_all(attrs={"class": "referent"}))
 
-    for elem in soup.find_all(attrs={"class": "lirik_line"}):
+    for elem in soup.find_all(attrs={"class": "referent"}):
         if elem.find_all("b") :
-            break
+            pass
         elif elem.find_all("p") :
-            break
+            pass
         elif elem.find_all("style") :
-            break
+            pass
+        elif elem.find_all("br"):
+            str_builder = str_builder+ "\n"
+        elif elem.find_all("a"):
+            pass
         else :
             str_builder = str_builder + elem.text + "\n"
 
 
     return str_builder
-
+print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
 
 
 #yang baru

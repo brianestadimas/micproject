@@ -122,7 +122,8 @@ def handle_message(event):
 					)
 				),
 				ImageCarouselColumn(
-				image_url='https://via.placeholder.com/800x800', action=MessageTemplateAction(
+				image_url='https://via.placeholder.com/800x800', 
+					action=MessageTemplateAction(
 					label='Sublyrics',
 					text='/sublyrics',
 					)
