@@ -74,6 +74,7 @@ def getTracksWithArtist(artist):
     data = r.json()
     return data
 
+
 def getTracksWithTrackArtist(track,artist):
     URL = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get' 
     PARAMS = {
