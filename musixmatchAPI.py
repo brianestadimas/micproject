@@ -129,6 +129,17 @@ def getLyricsByTrackArtist(artist,track):
 print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
 
 
+
+def searchLyrics(track):
+    URL = 'https://genius.com/search?q=' + track
+    http = urllib3.PoolManager()
+    response = http.request('GET', URL)
+    soup = BeautifulSoup(response.data,'html.parser')
+    return soup
+    
+print(searchLyrics('imagination'))
+
+
 #yang baru
 
 # def getLyricsByTrackArtist(track,artist):
