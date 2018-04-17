@@ -128,7 +128,6 @@ def getLyricsByTrackArtist(artist,track):
     print(lyrics)
 
     return lyrics
-print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
 
 
 
@@ -138,7 +137,7 @@ def searchLyrics(track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     return soup
-    
+
 print(searchLyrics('imagination'))
 
 
