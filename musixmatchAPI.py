@@ -134,7 +134,7 @@ def getLyricsByTrackArtist(artist,track):
 def searchLyrics(track):
     URL = 'https://genius.com/search?q=' + track
     http = urllib3.PoolManager()
-    response = http.request('POST', URL)
+    response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     return soup
 
