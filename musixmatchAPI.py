@@ -112,7 +112,6 @@ def getTracksWithTrackArtist(track,artist):
 
 
 def getLyricsByTrackArtist(artist,track):
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     track_split = track.replace(" ", "-")
     artist_split = artist.replace(" ","-")
 
@@ -121,12 +120,11 @@ def getLyricsByTrackArtist(artist,track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     lyrics_tmp = soup.find_all(attrs={"class": "lyrics"}) #lyrics isinya masih banyak tag ga penting
+    print(lyrics_tmp)
     lyrics = lyrics_tmp[0].get_text()
 
-    print("coba")
-    print(lyrics)
-
     return lyrics
+
 print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
 
 
