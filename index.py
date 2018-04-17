@@ -109,7 +109,7 @@ def handle_message(event):
                 			actions=[
                     			MessageTemplateAction(
 	                        		label="Pilih Ini",
-    	                    		text=lirik_api.getLyricsByTrackArtist(result[i].get("track").get("artist_name"),result[i].get("track").get("track_name"))
+    	                    		text="/lirik-"+result[i].get("track").get("artist_name")+"-"+result[i].get("track").get("track_name")
         	            		)
             	    		]
             			)

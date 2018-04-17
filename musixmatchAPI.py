@@ -73,6 +73,7 @@ def getTracksWithArtist(artist):
 
     data = r.json()
     return data
+print(getTracksWithArtist("raisa"))
 
 
 def getTracksWithTrackArtist(track,artist):
