@@ -73,7 +73,7 @@ def getTracksWithArtist(artist):
 
     data = r.json()
     return data
-print(getTracksWithArtist("raisa"))
+# print(getTracksWithArtist("raisa"))
 
 
 def getTracksWithTrackArtist(track,artist):
@@ -95,22 +95,22 @@ def getTracksWithTrackArtist(track,artist):
 
 ### Menggunakan API BARU ####
 
-# def getLyricsByTrackArtist(artist,track):
-#     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-#     track_split = track.replace(" ", "-")
-#     str_builder = "_ "
+def getFromKapanlagi(artist,track):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    track_split = track.replace(" ", "-")
+    str_builder = ""
 
-#     URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split + '.html'
-#     # http = urllib3.PoolManager()
-#     response = requests.get(URL)
+    URL = 'http://lirik.kapanlagi.com/artis/' + artist + '/' + track_split 
+    # http = urllib3.PoolManager()
+    response = requests.get(URL)
 
-#     soup = BeautifulSoup(response.content, "html.parser")
+    soup = BeautifulSoup(response.content, "html.parser")
 
-#     for elem in soup.find_all({"class":"lirik_line"}) :
-#         str_builder = str_builder + elem
-
-#     return str_builder
-
+    for elem in soup.find_all("span",class_="lirik_line") :
+        str_builder = str_builder + elem.get_text()+'\n'
+    
+    return str_builder
+# print(getFromKapanlagi('raisa', 'jatuh hati'))
 
 def getLyricsByTrackArtist(artist,track):
     track_split = track.replace(" ", "-")
@@ -121,12 +121,17 @@ def getLyricsByTrackArtist(artist,track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     lyrics_tmp = soup.find_all(attrs={"class": "lyrics"}) #lyrics isinya masih banyak tag ga penting
-    print(lyrics_tmp)
-    lyrics = lyrics_tmp[0].get_text()
+    if len(lyrics_tmp)==0:
+        lyrics = getFromKapanlagi(artist, track);
+        if len(lyrics)==0:
+            getTracksWithTrack(track);
+
+    else:
+        lyrics = lyrics_tmp[0].get_text()
 
     return lyrics
 
-print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
+print(getLyricsByTrackArtist('krisdayanti', 'menghitung hari'))
 
 
 
@@ -137,7 +142,7 @@ def searchLyrics(track):
     soup = BeautifulSoup(response.data,'html.parser')
     return soup
     
-print(searchLyrics('imagination'))
+# print(searchLyrics('imagination'))
 
 
 #yang baru
