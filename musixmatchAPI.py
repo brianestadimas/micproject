@@ -29,10 +29,10 @@ def getTracksWithSubLyrics(lyrics):
         'apikey' : getAPIkey(),
         'format' : 'json',
         'callback' : 'callback',
-        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
         'q_lyrics' : lyrics,
+        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
         's_track_rating' : 'desc', #rating track nya terurut dari yg paling tinggi ke rendah
-        'page_size' : 100 # muncul 100 lyric yg ada sub lyric itu
+        'page_size' : 5 # muncul 100 lyric yg ada sub lyric itu
     }
 
     r = requests.get(url = URL, params=PARAMS)
@@ -47,10 +47,10 @@ def getTracksWithTrack(track):
         'apikey' : getAPIkey(),
         'format' : 'json',
         'callback' : 'callback',
-        'f_has_lyrics' : 1,
         'q_track' : track,
+        'f_has_lyrics' : 1,
         's_track_rating' : 'desc',
-        'page_size' : 100 
+        'page_size' : 5 
     }
 
     r = requests.get(url = URL, params=PARAMS)
@@ -66,14 +66,17 @@ def getTracksWithArtist(artist):
         'apikey': getAPIkey(),
         'format':'json',
         'callback':'callback',
-        'q_artist':artist
+        'q_artist':artist,
+        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
+        's_track_rating' : 'desc',
+        'page_size' : 5 
     }
 
     r = requests.get(url = URL, params=PARAMS)
 
     data = r.json()
     return data
-print(getTracksWithArtist("raisa"))
+
 
 
 def getTracksWithTrackArtist(track,artist):
@@ -128,7 +131,7 @@ def getLyricsByTrackArtist(artist,track):
     print(lyrics)
 
     return lyrics
-print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
+print(getLyricsByTrackArtist('bts', 'blood sweat and tears'))
 
 
 #yang baru
@@ -164,3 +167,4 @@ print(getLyricsByTrackArtist('shawn mendes', 'imagination'))
 
 
 # kalau mau coba
+print(getTracksWithTrack("mantan terindah"))
