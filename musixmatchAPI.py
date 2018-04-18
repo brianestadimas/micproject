@@ -131,7 +131,21 @@ def getLyricsByTrackArtist(artist,track):
     print(lyrics)
 
     return lyrics
+<<<<<<< HEAD
 print(getLyricsByTrackArtist('bts', 'blood sweat and tears'))
+=======
+
+
+
+def searchLyrics(track):
+    URL = 'https://genius.com/search?q=' + track
+    http = urllib3.PoolManager()
+    response = http.request('GET', URL)
+    soup = BeautifulSoup(response.data,'html.parser')
+    return soup
+
+print(searchLyrics('imagination'))
+>>>>>>> 7336f97832678b8f2f45413a99f93a42e53fe813
 
 
 #yang baru
