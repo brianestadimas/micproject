@@ -72,7 +72,7 @@ def getTracksWithArtist(artist):
     r = requests.get(url = URL, params=PARAMS)
 
     data = r.json()
-    return data
+    return data.get('message').get("body").get("track_list")
 # print(getTracksWithArtist("raisa"))
 
 
