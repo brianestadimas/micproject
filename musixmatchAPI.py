@@ -29,10 +29,10 @@ def getTracksWithSubLyrics(lyrics):
         'apikey' : getAPIkey(),
         'format' : 'json',
         'callback' : 'callback',
-        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
         'q_lyrics' : lyrics,
+        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
         's_track_rating' : 'desc', #rating track nya terurut dari yg paling tinggi ke rendah
-        'page_size' : 100 # muncul 100 lyric yg ada sub lyric itu
+        'page_size' : 5 # muncul 100 lyric yg ada sub lyric itu
     }
 
     r = requests.get(url = URL, params=PARAMS)
@@ -47,10 +47,10 @@ def getTracksWithTrack(track):
         'apikey' : getAPIkey(),
         'format' : 'json',
         'callback' : 'callback',
-        'f_has_lyrics' : 1,
         'q_track' : track,
+        'f_has_lyrics' : 1,
         's_track_rating' : 'desc',
-        'page_size' : 100 
+        'page_size' : 5 
     }
 
     r = requests.get(url = URL, params=PARAMS)
@@ -66,14 +66,21 @@ def getTracksWithArtist(artist):
         'apikey': getAPIkey(),
         'format':'json',
         'callback':'callback',
-        'q_artist':artist
+        'q_artist':artist,
+        'f_has_lyrics' : 1, #filter pencarian, nanti yg muncul cuma yg ada lyric nya
+        's_track_rating' : 'desc',
+        'page_size' : 5 
     }
 
     r = requests.get(url = URL, params=PARAMS)
 
     data = r.json()
     return data
+<<<<<<< HEAD
 # print(getTracksWithArtist("raisa"))
+=======
+
+>>>>>>> fa7589ac4f0fbeb0a1390832a4b827597fb5079b
 
 
 def getTracksWithTrackArtist(track,artist):
@@ -132,8 +139,11 @@ def getLyricsByTrackArtist(artist,track):
         if len(lyrics)==0:
             return ('/lagu-'+track)
     return lyrics
+<<<<<<< HEAD
 
 print(getLyricsByTrackArtist('bts', 'jatuh-hato'))
+=======
+>>>>>>> fa7589ac4f0fbeb0a1390832a4b827597fb5079b
 
 
 
@@ -143,8 +153,13 @@ def searchLyrics(track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     return soup
+<<<<<<< HEAD
     
 # print(searchLyrics('imagination'))
+=======
+
+print(searchLyrics('imagination'))
+>>>>>>> fa7589ac4f0fbeb0a1390832a4b827597fb5079b
 
 
 #yang baru
@@ -180,3 +195,4 @@ def searchLyrics(track):
 
 
 # kalau mau coba
+print(getTracksWithTrack("mantan terindah"))

@@ -113,7 +113,7 @@ def handle_message(event):
         	            		)
             	    		]
             			)
-            			for i in range(len(result)%10)
+            			for i in range(5)
         			]
     			)
 			)
@@ -121,13 +121,30 @@ def handle_message(event):
 		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
-			reply_message = TextSendMessage(text=lirik_api.getLyricsByTrackArtist(event.message.text.split("-")[1], event.message.text.split("-")[2]))
-	
+			result = lirik_api.getTracksWithArtist(event.message.text.split("-")[1])
+			reply_message = TemplateSendMessage(
+    			alt_text='Pilih artis dan judul yang sesuai',
+    			template=CarouselTemplate(
+        			columns=[
+            			CarouselColumn(
+                			title=result[i].get("track").get("artist_name"),
+                			text=result[i].get("track").get("artist_name")+"-"+result[i].get("track").get("track_name"),
+                			actions=[
+                    			MessageTemplateAction(
+	                        		label="Pilih Ini",
+    	                    		text="/lirik-"+result[i].get("track").get("artist_name")+"-"+result[i].get("track").get("track_name")
+        	            		)
+            	    		]
+            			)
+            			for i in range(5)
+        			]
+    			)
+			)
+		
 	elif ('/sublirik' in event.message.text):
 		if (len(event.message.text.split("-"))<2):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
-			#ini
 			result = lirik_api.getTracksWithSubLyrics(event.message.text.split("-")[1])
 			reply_message = TemplateSendMessage(
     			alt_text='Pilih artis dan judul yang sesuai',
@@ -143,13 +160,13 @@ def handle_message(event):
         	            		)
             	    		]
             			)
-            			for i in range(len(result)%10)
+            			for i in range(5)
         			]
     			)
 			)
-
-	else:
-		reply_message = TextSendMessage(text='Ketik /help untuk bantuan')
+		
+	elif('/' in event.message.text):
+	 	reply_message = TextSendMessage(text='Ketik /help untuk bantuan')
 
 	line_bot_api.reply_message(
 	event.reply_token,
