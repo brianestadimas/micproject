@@ -112,7 +112,7 @@ def getFromKapanlagi(artist,track):
     return str_builder
 # print(getFromKapanlagi('raisa', 'jatuh hati'))
 
-def getLyricsByTrackArtist(artist,track):
+def getLyricsFromGenius(artist,track):
     track_split = track.replace(" ", "-")
     artist_split = artist.replace(" ","-")
 
@@ -122,16 +122,18 @@ def getLyricsByTrackArtist(artist,track):
     soup = BeautifulSoup(response.data,'html.parser')
     lyrics_tmp = soup.find_all(attrs={"class": "lyrics"}) #lyrics isinya masih banyak tag ga penting
     if len(lyrics_tmp)==0:
+        return ""
+    return lyrics_tmp[0].get_text()
+
+def getLyricsByTrackArtist(artist,track):
+    lyrics=getLyricsFromGenius(artist,track)
+    if len(lyrics)==0:
         lyrics = getFromKapanlagi(artist, track);
         if len(lyrics)==0:
-            getTracksWithTrack(track);
-
-    else:
-        lyrics = lyrics_tmp[0].get_text()
-
+            return ('/lagu-'+track)
     return lyrics
 
-print(getLyricsByTrackArtist('krisdayanti', 'menghitung hari'))
+print(getLyricsByTrackArtist('bts', 'jatuh-hato'))
 
 
 
