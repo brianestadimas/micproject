@@ -99,6 +99,10 @@ def handle_message(event):
 			reply_message = TextSendMessage(text='Ketik /lagu-(judul), contoh : /lagu-mantan terindah')
 		else :
 			result = lirik_api.getTracksWithTrack(event.message.text.split("-")[1])
+			n = 5
+			if len(result) < 5 :
+				n = len(result)
+				
 			reply_message = TemplateSendMessage(
     			alt_text='Pilih artis dan judul yang sesuai',
     			template=CarouselTemplate(
@@ -122,6 +126,10 @@ def handle_message(event):
 			reply_message = TextSendMessage(text='Ketik /artis-(nama), contoh : /artis-raisa')
 		else :
 			result = lirik_api.getTracksWithArtist(event.message.text.split("-")[1])
+			n = 5
+			if len(result) < 5 :
+				n = len(result)
+				
 			reply_message = TemplateSendMessage(
     			alt_text='Pilih artis dan judul yang sesuai',
     			template=CarouselTemplate(
@@ -146,6 +154,10 @@ def handle_message(event):
 			reply_message = TextSendMessage(text='Ketik /sublirik-(potonganlagu), contoh : /sublirik-ketika ku mendengar bahwa')
 		else :
 			result = lirik_api.getTracksWithSubLyrics(event.message.text.split("-")[1])
+			n = 5
+			if len(result) < 5 :
+				n = len(result)
+
 			reply_message = TemplateSendMessage(
     			alt_text='Pilih artis dan judul yang sesuai',
     			template=CarouselTemplate(
@@ -160,7 +172,7 @@ def handle_message(event):
         	            		)
             	    		]
             			)
-            			for i in range(5)
+            			for i in range(n)
         			]
     			)
 			)
