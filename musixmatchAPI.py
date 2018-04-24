@@ -73,7 +73,6 @@ def getTracksWithArtist(artist):
 
     data = r.json()
     return data.get('message').get("body").get("track_list")
-# print(getTracksWithArtist("raisa"))
 
 
 def getTracksWithTrackArtist(track,artist):
@@ -110,7 +109,26 @@ def getFromKapanlagi(artist,track):
         str_builder = str_builder + elem.get_text()+'\n'
     
     return str_builder
-# print(getFromKapanlagi('raisa', 'jatuh hati'))
+
+def getFromMetro(artist,track):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    track_split = track.replace(" ", "-")
+    artist_split = artist.replace(" ", "-")
+    str_builder = ""
+
+    URL = 'http://www.metrolyrics.com/' + track_split + '-lyrics-' + artist_split 
+    # http = urllib3.PoolManager()
+    response = requests.get(URL)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    for elem in soup.find_all("p",class_="verse") :
+        str_builder = str_builder + elem.get_text()+'\n'
+    
+    return str_builder
+
+print(getFromMetro("ed sheeran","perfect"))
+
 
 def getLyricsByTrackArtist(artist,track):
     track_split = track.replace(" ", "-")
@@ -121,28 +139,31 @@ def getLyricsByTrackArtist(artist,track):
     response = http.request('GET', URL)
     soup = BeautifulSoup(response.data,'html.parser')
     lyrics_tmp = soup.find_all(attrs={"class": "lyrics"}) #lyrics isinya masih banyak tag ga penting
+
     if len(lyrics_tmp)==0:
         lyrics = getFromKapanlagi(artist, track);
         if len(lyrics)==0:
-            return ("/judul-"+track)
+            lyrics = getFromMetro(artist, track);
+        else :
+            lyrics = "tidak ada"
 
     else:
         lyrics = lyrics_tmp[0].get_text()
 
     return lyrics
 
-print(getLyricsByTrackArtist('krisdayanti', 'menghitung hari'))
+# print(getLyricsByTrackArtist('krisdayanti', 'menghitung hari'))
 
 
 
-def searchLyrics(track):
-    URL = 'https://genius.com/search?q=' + track
-    http = urllib3.PoolManager()
-    response = http.request('GET', URL)
-    soup = BeautifulSoup(response.data,'html.parser')
-    return soup
+# def searchLyrics(track):
+#     URL = 'https://genius.com/search?q=' + track
+#     http = urllib3.PoolManager()
+#     response = http.request('GET', URL)
+#     soup = BeautifulSoup(response.data,'html.parser')
+#     return soup
     
-# print(searchLyrics('imagination'))
+# # print(searchLyrics('imagination'))
 
 
 #yang baru
